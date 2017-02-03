@@ -1,9 +1,38 @@
 ﻿Gui, Add, Button, w200 h50 gTest1 , Run Recording channel
 Gui, Add, Button, w200 h50 gTest2 , Run Record datetime
 Gui, Add, Button, w200 h50 gTest3 , Run Record keywords
-
 Gui, Show,, Recording
 Return
+
+
+/* 
+support ESC key to close windows in Recording program
+*/
+#IfWinActive Program recording
+
+{
+~Escape::
+      Send !{F4}
+return
+}
+
+
+#IfWinActive, Datetime recording
+
+{
+~Escape::
+      Send !{F4}
+return
+}
+
+#IfWinActive, Keywords recording
+
+{
+~Escape::
+      Send !{F4}
+return
+}
+
 
 Test1:
 #singleinstance force
@@ -18,10 +47,14 @@ Gui, 2:Add, Edit, x120 y30 w60 h20 gLIMIT Limit3 vUserInput,01
 Gui, 2:Add, Edit, x120 y60 w60 h20 gLIMIT Limit3 vUserInput2,02
 Gui, 2:Add, Edit, x120 y90 w60 h20 vUserInput3,filename
 Gui, 2:Add, Button, Default x+10 w50 gA1, OK
-Gui, 2:Show, w250, Program recording
+Gui, 2:Show, AutoSize, Program recording
+
+
+
 LIMIT: 
 Gui, 2:Submit, NoHide 
-Return
+return
+
 
 a1:
 Gui,2:submit,nohide
@@ -29,6 +62,7 @@ Run "C:\SS\StreamCapture.exe" --channels %UserInput% --duration %UserInput2% --f
 Gui, 2:destroy
 return
 ExitApp
+
 
 Test2:
 FormatTime, date,, dd/MM/yyyy
@@ -42,7 +76,7 @@ Gui, 3:Add, Text, x12 y30 w120 h30, Please enter channel number:
 Gui, 3:Add, Text, x12 y60 w120 h30, Please enter duration:
 Gui, 3:Add, Text, x12 y90 w120 h30, Please enter filename:
 Gui, 3:Add, Text, x12 y120 w120 h30, Please enter datetime:
-Gui, 3:Add, Edit, x120 y30 w60 h20 gLIMIT3 Limit3 vUserInput,01
+Gui, 3:Add, Edit, x120 y30 w60 h20 gLIMIT3 Limit2-3 vUserInput,01
 Gui, 3:Add, Edit, x120 y60 w60 h20 gLIMIT3 Limit3 vUserInput2,02
 Gui, 3:Add, Edit, x120 y90 w60 h20 vUserInput3,filename
 Gui, 3:Add, Edit, x120 y120 w120 h20 vUserInput4,"%date% %Time%"
@@ -52,12 +86,15 @@ LIMIT3:
 Gui, 3:Submit, NoHide 
 Return
 
+
+
 a2:
 Gui, 3:submit,nohide
 Run "C:\SS\StreamCapture.exe" --channels %UserInput% --duration %UserInput2% --filename %UserInput3% --datetime %UserInput4%
 Gui, 3:destroy
 return
 ExitApp
+
 
 Test3:
 #singleinstance force
@@ -84,3 +121,9 @@ Run "C:\SS\StreamCapture.exe" --keywords "%UserInput%|%UserInput2%|%UserInput3%
 Gui, 4:destroy
 return
 ExitApp
+
+GuiClose:		;close Gui to Exit
+
+ExitApp
+
+
