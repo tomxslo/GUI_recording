@@ -1,7 +1,7 @@
 #Program for easier recording with StreamCapture
 
 ###News:
-- First beta program releaase 
+- First beta program release 
 
 ###Features:
 - GUI for recording with StreamCapture
