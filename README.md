@@ -9,13 +9,13 @@
 ###How to use:
 There are 3 "modes" to run.  They are:
 
-**Run Recording channel
-Simpli enter which channel you want to record and duration and filename.
+Run Recording channel
+Enter which channel you want to record and duration and filename.
 
-**Run Record datetime
+Run Record datetime
 Record program with datetime option.
 
-**Run Record keywords
+Run Record keywords
 Enter keywords you want to record and pre and post minutes to record.
 
 ###Compiling:
