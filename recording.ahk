@@ -1,7 +1,7 @@
 ﻿Gui, Add, Button, w200 h50 gTest1 , Run Recording channel
 Gui, Add, Button, w200 h50 gTest2 , Run Record datetime
 Gui, Add, Button, w200 h50 gTest3 , Run Record keywords
-Gui, Add, Link,, <a href="http://redman.myftp.org/menu_soccer.html">Soccer</a> <a href="http://redman.myftp.org/menu_all.html">ALL</a>
+Gui, Add, Link,, <a href="http://guide.smoothstreams.tv/list.php">Soccer</a> <a href="http://guide.smoothstreams.tv/list.php">ALL</a>
 Gui, Show,, Recording
 global IE_Connect := new IE_Events
 Gui, Add, ActiveX, w500 h500 vWB, Shell.Chrome
@@ -86,7 +86,7 @@ Gui, 3:Add, Text, x12 y60 w120 h30, Please enter duration:
 Gui, 3:Add, Text, x12 y90 w120 h30, Please enter filename:
 Gui, 3:Add, Text, x12 y120 w120 h30, Please enter datetime:
 Gui, 3:Add, Text, x12 y150 w120 h30, Enter program location:
-Gui, 3:Add, Edit, x120 y30 w60 h20 gLIMIT3 Limit2-3 vUserInput,01
+Gui, 3:Add, Edit, x120 y30 w60 h20 gLIMIT3 Limit3 vUserInput,01
 Gui, 3:Add, Edit, x120 y60 w60 h20 gLIMIT3 Limit3 vUserInput2,02
 Gui, 3:Add, Edit, x120 y90 w60 h20 vUserInput3,filename
 Gui, 3:Add, Edit, x120 y120 w120 h20 vUserInput4,"%date% %Time%"
@@ -117,12 +117,21 @@ Gui, 4:Add, Text, x12 y30 w120 h30, Keywords:
 Gui, 4:Add, Text, x12 y60 w120 h30, Before min?
 Gui, 4:Add, Text, x12 y90 w120 h30, After min?
 Gui, 4:Add, Text, x12 y120 w120 h30, Enter program location:
-Gui, 4:Add, Edit, x120 y30 w60 h20 vUserInput,Keywords
+Gui, 4:Add, Edit, x120 y30 w150 h20 vUserInput,C:\SS1\keywords.json
 Gui, 4:Add, Edit, x120 y60 w60 h20 gLIMIT4 Limit3 vUserInput2,10
 Gui, 4:Add, Edit, x120 y90 w60 h20 gLIMIT4 Limit3 vUserInput3,10
-Gui, 4:Add, Edit, x120 y120 w150 h20 vUserInput4,"C:\SS1\StreamCapture.exe"
-Gui, 4:Add, Button, Default x+10 w50 gA3, OK
-Gui, 4:Show, w350, Keywords recording
+Gui, 4:Add, Edit, x120 y120 w150 h20 vUserInput4,"C:\SS2\StreamCapture.exe"
+gui, 4:add, button, x12 y150 h30 w60 gsub1, Keywords
+Gui, 4:Add, Button, Default x+10 w50 h30 w60 gA3, OK
+Gui, 4:Show, w300, Keywords recording
+
+Return
+
+sub1:
+ {
+    run,c:\Program Files (x86)\Notepad++\notepad++.exe %UserInput%
+
+   }
 
 LIMIT4: 
 Gui, 4:Submit, NoHide
@@ -130,7 +139,7 @@ Return
 
 a3:
 Gui, 4:submit,nohide
-Run %UserInput4% --keywords "%UserInput%|%UserInput2%|%UserInput3%
+Run %UserInput%
 Gui, 4:destroy
 return
 ExitApp
