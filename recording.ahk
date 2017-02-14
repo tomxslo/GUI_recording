@@ -1,7 +1,7 @@
 ﻿Gui, Add, Button, w200 h50 gTest1 , Run Recording channel
 Gui, Add, Button, w200 h50 gTest2 , Run Record datetime
 Gui, Add, Button, w200 h50 gTest3 , Run Record keywords
-Gui, Add, Link,, <a href="http://guide.smoothstreams.tv/list.php">Soccer</a> <a href="http://guide.smoothstreams.tv/list.php">ALL</a>
+Gui, Add, Link,, <a href="http://redman.myftp.org/menu_soccer.html">Soccer</a> <a href="http://redman.myftp.org/menu_all.html">ALL</a>
 Gui, Show,, Recording
 global IE_Connect := new IE_Events
 Gui, Add, ActiveX, w500 h500 vWB, Shell.Chrome
