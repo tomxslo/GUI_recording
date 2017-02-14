@@ -5,8 +5,8 @@ Gui, Add, Link,, <a href="http://redman.myftp.org/menu_soccer.html">Soccer</a> <
 Gui, Show,, Recording
 global IE_Connect := new IE_Events
 Gui, Add, ActiveX, w500 h500 vWB, Shell.Chrome
-WB.Navigate("http://guide.smoothstreams.tv/list.php")
-Gui, Show, w510 h500
+WB.Navigate("http://redman.myftp.org/soccer.html")
+Gui, Show, w510 h700
 ComObjConnect(WB, IE_Connect)
 Return
 
@@ -114,15 +114,14 @@ Gui, 4:Submit, NoHide
 Gui, 4:Destroy
 Gui, 4:Add, Text, x12 y05 , Enter recording options
 Gui, 4:Add, Text, x12 y30 w120 h30, Keywords:
-Gui, 4:Add, Text, x12 y60 w120 h30, Before min?
-Gui, 4:Add, Text, x12 y90 w120 h30, After min?
-Gui, 4:Add, Text, x12 y120 w120 h30, Enter program location:
+Gui, 4:Add, Text, x12 y60 w120 h30, Check settings?
+Gui, 4:Add, Text, x12 y90 w120 h30, Enter program location:
 Gui, 4:Add, Edit, x120 y30 w150 h20 vUserInput,C:\SS1\keywords.json
-Gui, 4:Add, Edit, x120 y60 w60 h20 gLIMIT4 Limit3 vUserInput2,10
-Gui, 4:Add, Edit, x120 y90 w60 h20 gLIMIT4 Limit3 vUserInput3,10
-Gui, 4:Add, Edit, x120 y120 w150 h20 vUserInput4,"C:\SS2\StreamCapture.exe"
-gui, 4:add, button, x12 y150 h30 w60 gsub1, Keywords
-Gui, 4:Add, Button, Default x+10 w50 h30 w60 gA3, OK
+Gui, 4:Add, Edit, x120 y60 w150 h20 vUserInput2,C:\SS1\appsettings.json
+Gui, 4:Add, Edit, x120 y90 w150 h20 vUserInput4,"C:\SS2\StreamCapture.exe"
+gui, 4:add, Button, x10 y120 h30 w60 gsub1, Keywords
+gui, 4:add, button, x80 y120 h30 w60 gsub2, Program settings
+Gui, 4:Add, Button, Default x190 y120 h30 w60 gA3, OK
 Gui, 4:Show, w300, Keywords recording
 
 Return
@@ -130,8 +129,15 @@ Return
 sub1:
  {
     run,c:\Program Files (x86)\Notepad++\notepad++.exe %UserInput%
+ }
 
-   }
+
+
+sub2:
+ {
+    run,c:\Program Files (x86)\Notepad++\notepad++.exe %UserInput2%
+ }
+
 
 LIMIT4: 
 Gui, 4:Submit, NoHide
@@ -139,14 +145,12 @@ Return
 
 a3:
 Gui, 4:submit,nohide
-Run %UserInput%
+Run %UserInput4%
 Gui, 4:destroy
 return
 ExitApp
 
 GuiClose:		;close Gui to Exit
-
-
 
 
 ExitApp
